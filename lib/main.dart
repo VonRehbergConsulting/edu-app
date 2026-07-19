@@ -9,6 +9,7 @@ import 'core/app_bloc_observer.dart';
 import 'core/app_info.dart';
 import 'core/di/service_locator.dart';
 import 'core/theme/app_theme.dart';
+import 'core/widgets/responsive_scaler.dart';
 import 'features/onboarding/root_page.dart';
 
 Future<void> main() async {
@@ -50,6 +51,8 @@ class EducationApp extends StatelessWidget {
       theme: AppTheme.light(),
       // Bewusst immer hell/farbenfroh – unabhaengig vom Dark Mode des Geraets.
       themeMode: ThemeMode.light,
+      // Tablet-Oberflaeche auf kleineren Geraeten gleichmaessig verkleinern.
+      builder: (context, child) => ResponsiveScaler(child: child!),
       home: const RootPage(),
     );
   }
