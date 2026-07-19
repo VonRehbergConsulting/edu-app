@@ -44,17 +44,17 @@ jobs:
       - name: Bauen, signieren, zu TestFlight hochladen
         env:
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_KEY_CONTENT }}
           KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
           MATCH_READONLY: ${{ vars.MATCH_READONLY }}
-          IOS_APP_IDENTIFIER: ${{ secrets.IOS_APP_IDENTIFIER }}
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          ITC_TEAM_ID: ${{ secrets.ITC_TEAM_ID }}
+          IOS_APP_IDENTIFIER: ${{ vars.IOS_APP_IDENTIFIER }}
+          TEAM_ID: ${{ vars.TEAM_ID }}
+          APPLE_ID: ${{ vars.APPLE_ID }}
+          ITC_TEAM_ID: ${{ vars.ITC_TEAM_ID }}
         run: |
           cd ios
           bundle exec fastlane build_and_deploy

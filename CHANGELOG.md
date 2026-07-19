@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/VonRehbergConsulting/lernwichtel-app/compare/v1.0.1...v1.0.2) (2026-07-19)
+
+### Bug Fixes
+
+* Deploy Pipline ([85469a1](https://github.com/VonRehbergConsulting/lernwichtel-app/commit/85469a1f7f88eb21265faea6cabfa8f3ab2a86ce))
+
 ## [1.0.1](https://github.com/VonRehbergConsulting/lernwichtel-app/compare/v1.0.0...v1.0.1) (2026-07-19)
 
 ### Bug Fixes
