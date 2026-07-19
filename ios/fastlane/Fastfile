@@ -1,14 +1,22 @@
 default_platform(:ios)
 
-KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"] || "fastlane_keychain"
-KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"] || "temp_keychain_password"
+# ENV-Wert holen, aber leere Strings wie "nicht gesetzt" behandeln.
+# GitHub Actions setzt fehlende Secrets als "" (nicht nil), sonst greift
+# der ||-Default nicht, weil "" in Ruby truthy ist.
+def env_or(key, default)
+  v = ENV[key]
+  v.nil? || v.empty? ? default : v
+end
+
+KEYCHAIN_NAME = env_or("KEYCHAIN_NAME", "fastlane_keychain")
+KEYCHAIN_PASSWORD = env_or("KEYCHAIN_PASSWORD", "temp_keychain_password")
 
 APP_STORE_CONNECT_KEY_ID = ENV["APP_STORE_CONNECT_KEY_ID"]
 APP_STORE_CONNECT_ISSUER_ID = ENV["APP_STORE_CONNECT_ISSUER_ID"]
 APP_STORE_CONNECT_KEY_CONTENT = ENV["APP_STORE_CONNECT_KEY_CONTENT"]
 
-IOS_APP_IDENTIFIER = ENV["IOS_APP_IDENTIFIER"] || "app.lernwichtel"
-TEAM_ID = ENV["TEAM_ID"] || ENV["APPLE_TEAM_ID"] || "383J7R89WY"
+IOS_APP_IDENTIFIER = env_or("IOS_APP_IDENTIFIER", "app.lernwichtel")
+TEAM_ID = env_or("TEAM_ID", env_or("APPLE_TEAM_ID", "383J7R89WY"))
 
 def delete_temp_keychain(name)
   delete_keychain(name: name) if File.exist?(File.expand_path("~/Library/Keychains/#{name}-db"))
